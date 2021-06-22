@@ -37,11 +37,11 @@ Just a simple note taking app which has been implemented using the latest MVVM a
 
 #### Installation
 This is how the app will look like when you first open it up
-[Welcome Screen](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/open_scrn.png)
+(https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/open_scrn.png)
 Add Notes Activity 
-[Adding Notes](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/add_note.gif)
+(https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/add_note.gif)
 Edit Notes Activity
-[Updating Notes](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/edit_note.gif)
+(https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/edit_note.gif)
 
 [Back To The Top](#read-me-template)
 
