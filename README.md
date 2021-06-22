@@ -3,12 +3,10 @@ A note taking app implemented using MVVM and latest Maerial Design
 
 ![Project Image](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/welcome_pic.png)
 
-> This is a ReadMe template to help save you time and effort.
 
 ---
 
 ### Table of Contents
-You're sections headers will be used to reference location of destination.
 
 - [Description](#description)
 - [How To Use](#how-to-use)
@@ -20,12 +18,15 @@ You're sections headers will be used to reference location of destination.
 
 ## Description
 
-Creating ReadMe's for your Github repository can be tedious.  I hope this template can save you time and effort as well as provide you with some consistency across your projects.
+Just a simple note taking app which has been implemented using the latest MVVM architecture components( Live Data, View Model, DAO, etc.). Also other useful libraries have been used to make the whole app responsive and to gve it a modern look and feel. 
 
 #### Technologies
 
-- Technology 1
-- Technology 2
+- Java
+- Android Studio
+- Room (A wrapper around sq lite)
+- Toasty (To make modern toasts faster)
+- Material Design
 
 [Back To The Top](#read-me-template)
 
@@ -33,15 +34,15 @@ Creating ReadMe's for your Github repository can be tedious.  I hope this templa
 
 ## How To Use
 
+
 #### Installation
+This is how the app will look like when you first open it up
+[Welcome Screen](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/open_scrn.png)
+Add Notes Activity 
+[Adding Notes](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/add_note.gif)
+Edit Notes Activity
+[Updating Notes](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/edit_note.gif)
 
-
-
-#### API Reference
-
-```html
-    <p>dummy code</p>
-```
 [Back To The Top](#read-me-template)
 
 ---
