@@ -10,8 +10,6 @@ A note taking app implemented using MVVM and latest Maerial Design
 
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [References](#references)
-- [License](#license)
 - [Author Info](#author-info)
 
 ---
@@ -34,8 +32,6 @@ Just a simple note taking app which has been implemented using the latest MVVM a
 
 ## How To Use
 
-
-#### Installation
 1.  This is how the app will look like when you first open it up
 
 
