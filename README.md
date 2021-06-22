@@ -41,7 +41,6 @@ Just a simple note taking app which has been implemented using the latest MVVM a
 
 ![](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/open_scrn.png)
 
-
 ------
 
 2.  Add Notes Activity
