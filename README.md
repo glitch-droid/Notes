@@ -1,7 +1,7 @@
 # Notes
 A note taking app implemented using MVVM and latest Maerial Design
 
-![Project Image](project-image-url)
+![Project Image](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/welcome_pic.png)
 
 > This is a ReadMe template to help save you time and effort.
 
