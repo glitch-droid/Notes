@@ -16,7 +16,7 @@ A note taking app implemented using MVVM and latest Material Design. User can al
 
 ## Description
 
-Just a simple note taking app which has been implemented using the latest MVVM architecture components( Live Data, View Model, DAO, etc.). Also other useful libraries have been used to make the whole app responsive and to gve it a modern look and feel. 
+Just a simple note taking app which has been implemented using the latest MVVM architecture components( Live Data, View Model, DAO, etc.). Also other useful libraries have been used to make the whole app responsive and to gve it a modern look and feel. ML kit has been used to extract text from images.
 
 #### Technologies
 
