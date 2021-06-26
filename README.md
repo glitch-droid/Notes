@@ -1,5 +1,5 @@
 # Notes
-A note taking app implemented using MVVM and latest Maerial Design
+A note taking app implemented using MVVM and latest Material Design. User can also use the app to extract text from captured images, giving them more freedom and thereby expanding the functionality of the app
 
 ![Project Image](https://github.com/glitch-droid/Notes/blob/master/app/src/main/res/raw/welcome_pic.png)
 
