@@ -25,6 +25,7 @@ Just a simple note taking app which has been implemented using the latest MVVM a
 - Room (A wrapper around sq lite)
 - Toasty (To make modern toasts faster)
 - Material Design
+- ML Kit from Google (Text Recognition)
 
 [Back To The Top](#read-me-template)
 
