@@ -66,6 +66,7 @@ public class AddEditNote extends AppCompatActivity {
     private ImageView imageButton;
     private Uri filePath;
     private InputImage image;
+    private ImageView imagePreview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +82,11 @@ public class AddEditNote extends AppCompatActivity {
         closeAddNote = findViewById(R.id.close_add_note);
         date = findViewById(R.id.note_date);
         imageButton = findViewById(R.id.selectImage_IV);
+        imagePreview = findViewById(R.id.note_image);
 
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         currDate = dateFormat.format(calendar.getTime());
         date.setText(currDate);
 
@@ -101,6 +103,7 @@ public class AddEditNote extends AppCompatActivity {
             saveButton.setBackgroundColor(getResources().getColor(R.color.purple_500));
             note_title.setText(receiveIntent.getStringExtra(EXTRA_TITLE));
             note_text.setText(receiveIntent.getStringExtra(EXTRA_TEXT));
+            imageButton.setBackgroundColor(getResources().getColor(R.color.blue));
             numberPicker.setProgress(receiveIntent.getIntExtra(EXTRA_PRIORITY,1));
         }else{
             header.setText("Add Note");
@@ -141,10 +144,9 @@ public class AddEditNote extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                note_text.setText("");
                 selectImage();
-                if(filePath!=null){
-                    getTextFromImage();
-                }
+
             }
         });
     }
@@ -173,9 +175,17 @@ public class AddEditNote extends AppCompatActivity {
             filePath = data.getData();
             try {
                 image = InputImage.fromFilePath(this,filePath);
-            }
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(
+                                getContentResolver(),
+                                filePath);
+                imagePreview.setImageBitmap(bitmap);
+                imagePreview.setVisibility(View.VISIBLE);
+                getTextFromImage();
 
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -188,7 +198,12 @@ public class AddEditNote extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Text>() {
                     @Override
                     public void onSuccess(@NonNull @NotNull Text text) {
-                        note_text.setText(text.getText());
+                        String txt = text.getText();
+                        if(txt.isEmpty()) {
+                            Toasty.error(AddEditNote.this,"No Text Detected!!").show();
+                        }else{
+                            note_text.setText(txt);
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -205,12 +220,7 @@ public class AddEditNote extends AppCompatActivity {
         
 
         if(title.trim().isEmpty() || text.trim().isEmpty()){
-            Toasty.custom(this,"Please fill out the necessary details",
-                    R.drawable.ic_round_error_24,
-                    R.color.dark_blue,
-                    700,
-                    true,
-                    true).show();
+            Toasty.info(this,"Please fill out the necessary details").show();
             //Toasty.error(this, "Please fill out the necessary details", Toast.LENGTH_SHORT).show();
             return;
         }

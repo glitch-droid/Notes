@@ -103,13 +103,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
                 notesViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                Toasty.custom(MainActivity.this,
-                        "Deleted!",
-                        R.drawable.ic_round_done_all_24,
-                        R.color.dark_blue,
-                        700,
-                        true,
-                        true).show();
+                Toasty.success(MainActivity.this,
+                        "Deleted!").show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -137,13 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
             Note newNote = new Note(title,text,priority,currDate);
             notesViewModel.inset(newNote);
-            Toasty.custom(this,
-                    "Added!",
-                    R.drawable.ic_round_done_all_24,
-                    R.color.dark_blue,
-                    700,
-                    true,
-                    true).show();
+            Toasty.success(this,
+                    "Added!").show();
         }else if(requestCode == EDIT_NOTE_REQUEST_CONST && resultCode == RESULT_OK){
             int id = data.getIntExtra(AddEditNote.EXTRA_ID,-1);
             if(id==-1){
@@ -164,25 +154,10 @@ public class MainActivity extends AppCompatActivity {
                 );
                 note.setId(id);
                 notesViewModel.update(note);
-                Toasty.custom(this,
-                        "Updated!",
-                        R.drawable.ic_round_done_all_24,
-                        R.color.dark_blue,
-                        700,
-                        true,
-                        true).show();
+                Toasty.normal(this,
+                        "Updated!").show();
             }
 
-        }
-        else{
-
-            Toasty.custom(this,
-                    "Failed!",
-                    R.drawable.ic_round_error_24,
-                    R.color.dark_blue,
-                    700,
-                    true,
-                    true).show();
         }
     }
 }

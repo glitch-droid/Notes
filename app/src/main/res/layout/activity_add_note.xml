@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/dark_blue"
     android:layout_height="match_parent"
     tools:context=".Activities.AddEditNote">
 
@@ -12,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -59,12 +60,24 @@
 
                 android:inputType="text"
                 android:fontFamily="sans-serif-black"/>
+
+
+            <ImageView
+                android:id="@+id/note_image"
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:layout_height="250dp"
+                android:visibility="gone"
+                android:layout_below="@+id/note_title"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_launcher_background"/>
+
             <EditText
                 android:id="@+id/note_text"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:padding="10dp"
-                android:layout_below="@+id/note_title"
+                android:layout_below="@+id/note_image"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -126,7 +139,7 @@
         </RelativeLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 
 
