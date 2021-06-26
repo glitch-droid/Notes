@@ -7,6 +7,7 @@
     android:paddingTop="20dp"
     android:paddingBottom="15dp"
     android:paddingRight="8dp"
+    android:weightSum="5"
     android:background="@color/purple_500">
 
     <ImageView
@@ -14,12 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="5dp"
+        android:layout_weight="1"
         android:background="@color/purple_500"
         android:src="@drawable/ic_round_close_24"/>
 
     <TextView
         android:id="@+id/addNote_Header"
-        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Add Note"
         android:gravity="center_vertical"
@@ -29,5 +32,11 @@
         android:textColor="@color/white"
         android:paddingLeft="30dp"
         />
-
+    <ImageView
+        android:id="@+id/selectImage_IV"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/txt_image_icon"
+        android:background="@color/purple_500"/>
 </LinearLayout>

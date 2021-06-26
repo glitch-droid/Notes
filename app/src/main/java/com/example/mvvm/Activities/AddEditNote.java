@@ -1,10 +1,14 @@
 package com.example.mvvm.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -16,8 +20,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mvvm.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.TextRecognizerOptions;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -48,6 +63,10 @@ public class AddEditNote extends AppCompatActivity {
     private LinearLayout actionBar;
     private TextView date;
     private String currDate;
+    private ImageView imageButton;
+    private Uri filePath;
+    private InputImage image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +80,7 @@ public class AddEditNote extends AppCompatActivity {
         saveButton = findViewById(R.id.save_note_button);
         closeAddNote = findViewById(R.id.close_add_note);
         date = findViewById(R.id.note_date);
+        imageButton = findViewById(R.id.selectImage_IV);
 
 
         Calendar calendar = Calendar.getInstance();
@@ -117,6 +137,65 @@ public class AddEditNote extends AppCompatActivity {
                 saveNote();
             }
         });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+                if(filePath!=null){
+                    getTextFromImage();
+                }
+            }
+        });
+    }
+
+    private void selectImage(){
+        Intent intent = new Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        );
+        intent.setType("image/*");
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data)
+    {
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+        if (requestCode == 1
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                image = InputImage.fromFilePath(this,filePath);
+            }
+
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void getTextFromImage(){
+        TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        Task<Text> result =
+                recognizer.process(image)
+                .addOnSuccessListener(new OnSuccessListener<Text>() {
+                    @Override
+                    public void onSuccess(@NonNull @NotNull Text text) {
+                        note_text.setText(text.getText());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+
+                    }
+                });
     }
 
     private void saveNote() {
@@ -126,7 +205,12 @@ public class AddEditNote extends AppCompatActivity {
         
 
         if(title.trim().isEmpty() || text.trim().isEmpty()){
-            Toasty.custom(this,"Please fill out the necessary details",R.drawable.ic_round_error_24,R.color.dark_blue,700,true,true).show();
+            Toasty.custom(this,"Please fill out the necessary details",
+                    R.drawable.ic_round_error_24,
+                    R.color.dark_blue,
+                    700,
+                    true,
+                    true).show();
             //Toasty.error(this, "Please fill out the necessary details", Toast.LENGTH_SHORT).show();
             return;
         }
